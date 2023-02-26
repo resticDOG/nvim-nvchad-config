@@ -1,4 +1,3 @@
-
 -- global settings
 
 vim.opt.linespace = 1000
@@ -9,4 +8,10 @@ local autocmd = vim.api.nvim_create_autocmd
 autocmd("VimResized", {
   pattern = "*",
   command = "tabdo wincmd =",
+})
+
+-- auto format on save
+autocmd("BufWritePre", {
+  pattern = "*",
+  command = "lua vim.lsp.buf.format()",
 })

@@ -1,11 +1,12 @@
-local home = os.getenv('HOME')
+vim.bo.tabstop = 4
+local home = os.getenv "HOME"
 local jdtls_dir = home .. "/.local/share/nvim/mason/packages/jdtls"
-local jdtls = require('jdtls')
-local root_markers = {'gradlew', 'mvnw', '.git'}
-local root_dir = require('jdtls.setup').find_root(root_markers)
+local jdtls = require "jdtls"
+local root_markers = { "gradlew", "mvnw", ".git" }
+local root_dir = require("jdtls.setup").find_root(root_markers)
 local workspace_folder = home .. "/.local/share/eclipse/" .. vim.fn.fnamemodify(root_dir, ":p:h:t")
 
-local remap = function (mode, rhs, lhs, bufopts, desc)
+local remap = function(mode, rhs, lhs, bufopts, desc)
   if bufopts == nil then
     bufopts = {}
   end
@@ -16,11 +17,11 @@ end
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  jdtls.setup_dap({ hotcodereplace = 'auto' })
+  jdtls.setup_dap { hotcodereplace = "auto" }
   jdtls.setup.add_commands()
 
   -- Default keymaps
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
+  local bufopts = { noremap = true, silent = true, buffer = bufnr }
   require("lsp.defaults").on_attach(client, bufnr)
 
   -- Java extensions
@@ -33,12 +34,15 @@ local on_attach = function(client, bufnr)
 end
 
 local bundles = {
-  vim.fn.glob(home .. '/.m2/repository/com/microsoft/java/com.microsoft.java.debug.plugin/0.44.0/com.microsoft.java.debug.plugin-0.44.0.jar'),
+  vim.fn.glob(
+    home
+      .. "/.m2/repository/com/microsoft/java/com.microsoft.java.debug.plugin/0.44.0/com.microsoft.java.debug.plugin-0.44.0.jar"
+  ),
 }
-vim.list_extend(bundles, vim.split(vim.fn.glob(home .. '/apps/vscode-java-test/server/*.jar'), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/apps/vscode-java-test/server/*.jar"), "\n"))
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
 local config = {
   flags = {
@@ -47,19 +51,19 @@ local config = {
   capabilities = capabilities,
   on_attach = on_attach,
   init_options = {
-    bundles = bundles
+    bundles = bundles,
   },
   root_dir = root_dir,
   settings = {
     java = {
-      -- format = {
-      --   settings = {
-      --     url = "/.local/share/eclipse/eclipse-java-google-style.xml",
-      --     profile = "GoogleStyle",
-      --   },
-      -- },
+      format = {
+        settings = {
+          url = "/.local/share/eclipse/eclipse-java-google-style.xml",
+          profile = "GoogleStyle",
+        },
+      },
       signatureHelp = { enabled = true },
-      contentProvider = { preferred = 'fernflower' },
+      contentProvider = { preferred = "fernflower" },
       completion = {
         favoriteStaticMembers = {
           "org.hamcrest.MatcherAssert.assertThat",
@@ -68,7 +72,7 @@ local config = {
           "org.junit.jupiter.api.Assertions.*",
           "java.util.Objects.requireNonNull",
           "java.util.Objects.requireNonNullElse",
-          "org.mockito.Mockito.*"
+          "org.mockito.Mockito.*",
         },
         filteredTypes = {
           "com.sun.*",
@@ -80,13 +84,13 @@ local config = {
       },
       sources = {
         organizeImports = {
-          starThreshold = 9999;
-          staticStarThreshold = 9999;
+          starThreshold = 9999,
+          staticStarThreshold = 9999,
         },
       },
       codeGeneration = {
         toString = {
-          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}"
+          template = "${object.className}{${member.name()}=${member.value}, ${otherMembers}}",
         },
         hashCodeEquals = {
           useJava7Objects = true,
@@ -99,25 +103,30 @@ local config = {
             name = "JavaSE-17",
             path = "/usr/lib/jvm/openjdk-17",
           },
-        }
-      }
-    }
+        },
+      },
+    },
   },
   cmd = {
     "java",
-    '-Declipse.application=org.eclipse.jdt.ls.core.id1',
-    '-Dosgi.bundles.defaultStartLevel=4',
-    '-Declipse.product=org.eclipse.jdt.ls.core.product',
-    '-Dlog.protocol=true',
-    '-Dlog.level=ALL',
-    '-Xmx4g',
-    '--add-modules=ALL-SYSTEM',
-    '--add-opens', 'java.base/java.util=ALL-UNNAMED',
-    '--add-opens', 'java.base/java.lang=ALL-UNNAMED',
-    '-javaagent:' .. jdtls_dir .. "/lombok.jar",
-    '-jar', vim.fn.glob(jdtls_dir .. '/plugins/org.eclipse.equinox.launcher_*.jar'),
-    '-configuration', jdtls_dir .. '/config_linux',
-    '-data', workspace_folder,
+    "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+    "-Dosgi.bundles.defaultStartLevel=4",
+    "-Declipse.product=org.eclipse.jdt.ls.core.product",
+    "-Dlog.protocol=true",
+    "-Dlog.level=ALL",
+    "-Xmx4g",
+    "--add-modules=ALL-SYSTEM",
+    "--add-opens",
+    "java.base/java.util=ALL-UNNAMED",
+    "--add-opens",
+    "java.base/java.lang=ALL-UNNAMED",
+    "-javaagent:" .. jdtls_dir .. "/lombok.jar",
+    "-jar",
+    vim.fn.glob(jdtls_dir .. "/plugins/org.eclipse.equinox.launcher_*.jar"),
+    "-configuration",
+    jdtls_dir .. "/config_linux",
+    "-data",
+    workspace_folder,
   },
 }
 
