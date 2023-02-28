@@ -3,7 +3,7 @@ local overrides = require "custom.plugins.overrides"
 ---@type {[PluginName]: NvPluginConfig|false}
 local plugins = {
 
-  -- ["goolord/alpha-nvim"] = { disable = false } -- enables dashboard
+  ["goolord/alpha-nvim"] = { disable = false }, -- enables dashboard
 
   -- Override plugin definition options
   ["neovim/nvim-lspconfig"] = {
@@ -30,7 +30,7 @@ local plugins = {
   ["max397574/better-escape.nvim"] = {
     event = "InsertEnter",
     config = function()
-     require("better_escape").setup()
+      require("better_escape").setup()
     end,
   },
 
@@ -52,14 +52,22 @@ local plugins = {
   ["mfussenegger/nvim-jdtls"] = {},
 
   ["mfussenegger/nvim-dap"] = {},
+  -- dap ui
+  ["rcarriga/nvim-dap-ui"] = {
+    config = function()
+      require("dapui").setup()
+    end,
+  },
 
   -- lsp progress ui
   ["j-hui/fidget.nvim"] = {
-    config = function ()
+    config = function()
       require("fidget").setup()
-    end
-  }
+    end,
+  },
 
+  -- copilot
+  ["github/copilot.vim"] = {},
 }
 
 return plugins

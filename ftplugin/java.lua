@@ -1,4 +1,7 @@
-vim.bo.tabstop = 4
+-- table size  
+vim.opt_local.shiftwidth = 4
+vim.opt_local.tabstop = 4
+
 local home = os.getenv "HOME"
 local jdtls_dir = home .. "/.local/share/nvim/mason/packages/jdtls"
 local jdtls = require "jdtls"
