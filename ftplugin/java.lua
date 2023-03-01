@@ -31,9 +31,9 @@ local on_attach = function(client, bufnr)
   remap("n", "<C-o>", jdtls.organize_imports, bufopts, "Organize imports")
   remap("n", "<leader>vc", jdtls.test_class, bufopts, "Test class (DAP)")
   remap("n", "<leader>vm", jdtls.test_nearest_method, bufopts, "Test method (DAP)")
-  remap("n", "<space>ev", jdtls.extract_variable, bufopts, "Extract variable")
-  remap("n", "<space>ec", jdtls.extract_constant, bufopts, "Extract constant")
-  remap("v", "<space>em", [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]], bufopts, "Extract method")
+  remap("n", "<leader>ev", jdtls.extract_variable, bufopts, "Extract variable")
+  remap("n", "<leader>ec", jdtls.extract_constant, bufopts, "Extract constant")
+  remap("v", "<leader>em", [[<ESC><CMD>lua require('jdtls').extract_method(true)<CR>]], bufopts, "Extract method")
 end
 
 local bundles = {
@@ -104,7 +104,7 @@ local config = {
         runtimes = {
           {
             name = "JavaSE-17",
-            path = "/usr/lib/jvm/openjdk-17",
+            path = "/usr/lib/jvm/java-17-openjdk-amd64",
           },
         },
       },

@@ -35,33 +35,69 @@ M.jdtls = {
       "Code action",
     },
     ["gr"] = {
-      function ()
+      function()
         vim.lsp.buf.rename()
       end,
-      "Code rename"
+      "Code rename",
     },
     ["gf"] = {
-      function ()
+      function()
         vim.lsp.buf.references()
       end,
-      "Code references"
-    }
+      "Code references",
+    },
   },
 }
 
+-- nvim-dap 
 M.dap = {
   n = {
     ["<leader>bb"] = {
       function()
         require("dap").toggle_breakpoint()
       end,
-      "Set breakpoint",
+      "toggle breakpoint",
     },
     ["<leader>bc"] = {
       function()
         require("dap").set_breakpoint(vim.fn.input "Breakpoint")
       end,
       "Set breakpoint",
+    },
+    ["<leader>st"] = {
+      function()
+        require("dap").continue()
+      end,
+      "Dap continue",
+    },
+    ["<leader>so"] = {
+      function()
+        require("dap").step_over()
+      end,
+      "Dap Step over",
+    },
+    ["<leader>si"] = {
+      function()
+        require("dap").step_into()
+      end,
+      "Dap step into",
+    },
+  },
+}
+-- dap ui
+M.dapui = {
+  n = {
+    ["<leader>do"] = {
+      function()
+        require("dapui").open()
+      end,
+      "Dap ui open",
+    },
+    ["<leader>dc"] = {
+      function()
+        require("dapui").close()
+      end,
+      "Dap ui close",
     },
   },
 }
