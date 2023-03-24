@@ -68,6 +68,13 @@ local plugins = {
 
   -- copilot
   ["github/copilot.vim"] = {},
+
+  -- auto switch im
+  ["keaising/im-select.nvim"] = {
+    config = function()
+      require "custom.plugins.im-select"
+    end,
+  }
 }
 
 return plugins

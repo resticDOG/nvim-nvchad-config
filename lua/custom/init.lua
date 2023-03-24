@@ -1,6 +1,7 @@
 -- global settings
 
 vim.opt.linespace = 1000
+vim.opt.ignorecase = true
 -- copilot
 vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
