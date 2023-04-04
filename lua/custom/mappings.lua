@@ -4,7 +4,8 @@ local M = {}
 M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
-    ["<C-z>"] = { "u", "un do", opts = { nowait = true } },
+    ["<c-z>"] = { "u", "un do", opts = { nowait = true } },
+    ["qq"] = { ":qa!<CR>", "force quit without save", opts = { nowait = true } },
   },
 }
 
@@ -49,7 +50,7 @@ M.jdtls = {
   },
 }
 
--- nvim-dap 
+-- nvim-dap
 M.dap = {
   n = {
     ["<leader>bb"] = {
@@ -98,6 +99,38 @@ M.dapui = {
         require("dapui").close()
       end,
       "Dap ui close",
+    },
+  },
+}
+
+-- hop
+M.hop = {
+  n = {
+    ["f"] = { "<cmd>HopChar1CurrentLine<cr>", "find in current line" },
+    ["q"] = { "<cmd>HopChar1<cr>", "find in buffer" },
+  },
+  v = {
+    ["f"] = { "<cmd>HopChar1CurrentLine<cr>", "find in current line" },
+    ["q"] = { "<cmd>HopChar1<cr>", "find in buffer" },
+  },
+}
+
+-- code action preview
+M.codepreview = {
+  n = {
+    ["<leader>ap"] = {
+      function()
+        require("actions-preview").code_actions()
+      end,
+      "code actions preview",
+    },
+  },
+  v = {
+    ["<leader>ap"] = {
+      function()
+        require("actions-preview").code_actions()
+      end,
+      "code actions preview",
     },
   },
 }

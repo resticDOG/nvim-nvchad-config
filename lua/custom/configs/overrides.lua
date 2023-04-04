@@ -4,10 +4,16 @@ M.treesitter = {
   ensure_installed = {
     "vim",
     "lua",
+    "luadoc",
     "html",
     "css",
     "javascript",
     "c",
+    "java",
+    "gitcommit",
+    "yaml",
+    "json",
+    "vue",
   },
 }
 
@@ -23,7 +29,12 @@ M.mason = {
     "typescript-language-server",
     "deno",
     "vue-language-server",
-    "jdtls"
+    "prettierd",
+    "eslint_d",
+    "emmet-ls",
+
+    -- java
+    "jdtls",
   },
 }
 
