@@ -14,6 +14,7 @@ M.treesitter = {
     "yaml",
     "json",
     "vue",
+    "sql",
   },
 }
 
@@ -35,6 +36,9 @@ M.mason = {
 
     -- java
     "jdtls",
+
+    -- bash stuff
+    "bash-language-server",
   },
 }
 

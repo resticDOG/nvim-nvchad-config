@@ -31,7 +31,8 @@ M.jdtls = {
     },
     ["<leader>ca"] = {
       function()
-        vim.lsp.buf.code_action()
+        -- vim.lsp.buf.code_action()
+        require("actions-preview").code_actions()
       end,
       "Code action",
     },
@@ -43,9 +44,17 @@ M.jdtls = {
     },
     ["gf"] = {
       function()
-        vim.lsp.buf.references()
+        -- vim.lsp.buf.references()
+        -- use telescope instead
+        require("telescope.builtin").lsp_references()
       end,
       "Code references",
+    },
+    ["fm"] = {
+      function()
+        vim.lsp.buf.format()
+      end,
+      "Code format",
     },
   },
 }
@@ -106,32 +115,10 @@ M.dapui = {
 -- hop
 M.hop = {
   n = {
-    ["f"] = { "<cmd>HopChar1CurrentLine<cr>", "find in current line" },
     ["q"] = { "<cmd>HopChar1<cr>", "find in buffer" },
   },
   v = {
-    ["f"] = { "<cmd>HopChar1CurrentLine<cr>", "find in current line" },
     ["q"] = { "<cmd>HopChar1<cr>", "find in buffer" },
-  },
-}
-
--- code action preview
-M.codepreview = {
-  n = {
-    ["<leader>ap"] = {
-      function()
-        require("actions-preview").code_actions()
-      end,
-      "code actions preview",
-    },
-  },
-  v = {
-    ["<leader>ap"] = {
-      function()
-        require("actions-preview").code_actions()
-      end,
-      "code actions preview",
-    },
   },
 }
 

@@ -8,8 +8,8 @@ local servers = {
   "cssls",
   "tsserver",
   "clangd",
-  "volar",
   "emmet_ls",
+  "bashls",
 }
 
 for _, lsp in ipairs(servers) do
@@ -18,3 +18,13 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+-- volar take over mode
+lspconfig.volar.setup {
+  init_options = {
+    typescript = {
+      tsdk = "/home/linkzz/.nvm/versions/node/v18.14.0/lib/node_modules/typescript/lib",
+    },
+  },
+  filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+}
