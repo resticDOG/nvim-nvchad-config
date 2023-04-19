@@ -110,6 +110,22 @@ local plugins = {
       require "custom.configs.filetype"
     end,
   },
+
+  -- vim fugitive
+  {
+    "tpope/vim-fugitive",
+    cmd = { "Git" },
+  },
+
+  -- copilot
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require "custom.configs.copilot"
+    end,
+  },
 }
 
 return plugins

@@ -56,6 +56,42 @@ M.jdtls = {
       end,
       "Code format",
     },
+    ["<C>o"] = {
+      function()
+        require("jdtls").organize_imports()
+      end,
+      "organize imports",
+    },
+    ["<leader>vc"] = {
+      function()
+        require("jdtls").test_class()
+      end,
+      "Test class",
+    },
+    ["<leader>vm"] = {
+      function()
+        require("jdtls").test_nearest_method()
+      end,
+      "Test Method",
+    },
+    ["<leader>ev"] = {
+      function()
+        require("jdtls").extract_variable()
+      end,
+      "extract variable",
+    },
+    ["<leader>ec"] = {
+      function()
+        require("jdtls").extract_constant()
+      end,
+      "extract constant",
+    },
+    ["<leader>em"] = {
+      function()
+        require("jdtls").extract_method(true)
+      end,
+      "extract method",
+    },
   },
 }
 
@@ -121,5 +157,15 @@ M.hop = {
     ["q"] = { "<cmd>HopChar1<cr>", "find in buffer" },
   },
 }
+
+-- fugitive
+M.fugitive = {
+  n = {
+    ["<leader>gb"] = { "<cmd>Git blame<cr>", "Git blame" },
+    ["<leader>gd"] = { "<cmd>Git diff<cr>", "Git diff" },
+  },
+}
+
+-- copilot
 
 return M
