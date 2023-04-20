@@ -123,7 +123,20 @@ local plugins = {
     cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require "custom.configs.copilot"
+      require("copilot").setup {
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          keymap = {
+            accept = "<C-p>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+      }
     end,
   },
 }

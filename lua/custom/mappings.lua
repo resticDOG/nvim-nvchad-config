@@ -110,7 +110,7 @@ M.dap = {
       end,
       "Set breakpoint",
     },
-    ["<leader>st"] = {
+    ["<leader>d"] = {
       function()
         require("dap").continue()
       end,
@@ -133,13 +133,14 @@ M.dap = {
 -- dap ui
 M.dapui = {
   n = {
-    ["<leader>do"] = {
+    ["<M-o>"] = {
       function()
         require("dapui").open()
+        require("dap").continue()
       end,
       "Dap ui open",
     },
-    ["<leader>dc"] = {
+    ["<M-p>"] = {
       function()
         require("dapui").close()
       end,
