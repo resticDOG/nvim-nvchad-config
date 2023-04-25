@@ -15,6 +15,8 @@ M.treesitter = {
     "json",
     "vue",
     "sql",
+    "markdown",
+    "markdown_inline",
   },
 }
 

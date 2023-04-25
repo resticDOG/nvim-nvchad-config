@@ -54,19 +54,58 @@ local plugins = {
     end,
   },
 
-  -- java support
-  {
-    "mfussenegger/nvim-jdtls",
-  },
-
-  {
-    "mfussenegger/nvim-dap",
-  },
   -- dap ui
   {
     "rcarriga/nvim-dap-ui",
+    dependencies = {
+      {
+        "mfussenegger/nvim-dap",
+      },
+      {
+        "mfussenegger/nvim-jdtls",
+      },
+    },
     config = function()
-      require("dapui").setup()
+      require("dapui").setup {
+        layouts = {
+          {
+            elements = {
+              {
+                id = "scopes",
+                size = 0.25,
+              },
+              {
+                id = "breakpoints",
+                size = 0.25,
+              },
+              {
+                id = "stacks",
+                size = 0.25,
+              },
+              {
+                id = "watches",
+                size = 0.25,
+              },
+            },
+            position = "left",
+            size = 20,
+          },
+          {
+            elements = {
+              {
+                id = "repl",
+                size = 0.2,
+              },
+              {
+                id = "console",
+                size = 0.8,
+              },
+            },
+            position = "bottom",
+            size = 15,
+          },
+        },
+      }
     end,
   },
 
@@ -128,7 +167,7 @@ local plugins = {
           enabled = true,
           auto_trigger = true,
           keymap = {
-            accept = "<C-p>",
+            accept = "<M-l>",
             accept_word = false,
             accept_line = false,
             next = "<M-]>",

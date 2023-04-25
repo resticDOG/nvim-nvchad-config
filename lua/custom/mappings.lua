@@ -56,7 +56,7 @@ M.jdtls = {
       end,
       "Code format",
     },
-    ["<C>o"] = {
+    ["<leader>o"] = {
       function()
         require("jdtls").organize_imports()
       end,
@@ -112,6 +112,13 @@ M.dap = {
     },
     ["<leader>d"] = {
       function()
+        -- float console
+        require("dapui").float_element("console", { width = 150, height = 30, position = "center", enter = true })
+      end,
+      "Dap continue",
+    },
+    ["<leader>s"] = {
+      function()
         require("dap").continue()
       end,
       "Dap continue",
@@ -135,16 +142,9 @@ M.dapui = {
   n = {
     ["<M-o>"] = {
       function()
-        require("dapui").open()
-        require("dap").continue()
+        require("dapui").toggle()
       end,
       "Dap ui open",
-    },
-    ["<M-p>"] = {
-      function()
-        require("dapui").close()
-      end,
-      "Dap ui close",
     },
   },
 }
@@ -166,7 +166,5 @@ M.fugitive = {
     ["<leader>gd"] = { "<cmd>Git diff<cr>", "Git diff" },
   },
 }
-
--- copilot
 
 return M
