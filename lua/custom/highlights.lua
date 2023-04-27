@@ -6,15 +6,19 @@ local M = {}
 
 ---@type HLTable
 M.override = {
+  -- neotree
   Comment = {
     bold = true,
-    fg = "green",
+    fg = "gray",
   },
 }
 
 ---@type HLTable
 M.add = {
   NvimTreeOpenedFolderName = { fg = "green", bold = true },
+  -- neotree
+  NeoTreeDirectoryName = { fg = "blue" },
+  NeoTreeDirectoryIcon = { fg = "blue" },
 }
 
 return M

@@ -32,9 +32,26 @@ local plugins = {
     opts = overrides.mason,
   },
 
+  -- disable nvim-tree, use neo-tree instead
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
+    enabled = false,
+  },
+
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    cmd = { "Neotree", "NeoTreeFocusToggle" },
+    dependencies = {
+      {
+        "nvim-lua/plenary.nvim",
+        "MunifTanjim/nui.nvim",
+        "mrbjarksen/neo-tree-diagnostics.nvim",
+      },
+    },
+    config = function()
+      require "custom.configs.neo-tree"
+    end,
   },
 
   -- Install a plugin

@@ -4,7 +4,7 @@ local M = {}
 M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
-    ["<c-z>"] = { "u", "un do", opts = { nowait = true } },
+    ["<C-z>"] = { "u", "un do", opts = { nowait = true } },
     ["qq"] = { ":qa!<CR>", "force quit without save", opts = { nowait = true } },
   },
 }
@@ -112,16 +112,22 @@ M.dap = {
     },
     ["<leader>d"] = {
       function()
+        require("dap").continue()
+      end,
+      "dap continue",
+    },
+    ["<leader>fl"] = {
+      function()
         -- float console
         require("dapui").float_element("console", { width = 150, height = 30, position = "center", enter = true })
       end,
-      "Dap continue",
+      "Dap float console",
     },
     ["<leader>s"] = {
       function()
-        require("dap").continue()
+        require("dap").close()
       end,
-      "Dap continue",
+      "Dap stop",
     },
     ["<leader>so"] = {
       function()
@@ -164,6 +170,14 @@ M.fugitive = {
   n = {
     ["<leader>gb"] = { "<cmd>Git blame<cr>", "Git blame" },
     ["<leader>gd"] = { "<cmd>Git diff<cr>", "Git diff" },
+  },
+}
+
+-- neotree
+M.neotree = {
+  n = {
+    ["<leader>e"] = { "<cmd>Neotree reveal<cr>", "Neotree" },
+    ["<C-n>"] = { "<cmd>NeoTreeFocusToggle<cr>", "Neotree toggle" },
   },
 }
 

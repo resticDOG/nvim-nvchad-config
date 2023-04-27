@@ -7,6 +7,7 @@ M.treesitter = {
     "luadoc",
     "html",
     "css",
+    "scss",
     "javascript",
     "c",
     "java",
