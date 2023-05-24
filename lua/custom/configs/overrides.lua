@@ -9,6 +9,7 @@ M.treesitter = {
     "css",
     "scss",
     "javascript",
+    "jsdoc",
     "c",
     "java",
     "gitcommit",
@@ -18,6 +19,11 @@ M.treesitter = {
     "sql",
     "markdown",
     "markdown_inline",
+    "python",
+    "comment",
+  },
+  comment = {
+    enable = true,
   },
 }
 
@@ -42,6 +48,9 @@ M.mason = {
 
     -- bash stuff
     "bash-language-server",
+
+    -- python stuff
+    "pyright",
   },
 }
 
@@ -51,11 +60,38 @@ M.nvimtree = {
     enable = true,
   },
 
+  view = {
+    width = 60,
+  },
+
   renderer = {
     highlight_git = true,
     icons = {
       show = {
         git = true,
+      },
+      glyphs = {
+        default = "",
+        symlink = "",
+        folder = {
+          default = "",
+          empty = "",
+          empty_open = "",
+          open = "",
+          symlink = "",
+          symlink_open = "",
+          arrow_open = "",
+          arrow_closed = "",
+        },
+        git = {
+          unstaged = "",
+          staged = "",
+          unmerged = "",
+          renamed = "➜",
+          untracked = "★",
+          deleted = "",
+          ignored = "◌",
+        },
       },
     },
   },

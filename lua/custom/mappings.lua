@@ -5,6 +5,7 @@ M.general = {
   n = {
     [";"] = { ":", "enter command mode", opts = { nowait = true } },
     ["<C-z>"] = { "u", "un do", opts = { nowait = true } },
+    ["<C-q>"] = { "<C-v>", "multiple line select", opts = { nowait = true } },
     ["qq"] = { ":qa!<CR>", "force quit without save", opts = { nowait = true } },
   },
 }
@@ -159,9 +160,11 @@ M.dapui = {
 M.hop = {
   n = {
     ["q"] = { "<cmd>HopChar1<cr>", "find in buffer" },
+    ["f"] = { "<cmd>HopChar1CurrentLine<cr>", "find in current line" },
   },
   v = {
     ["q"] = { "<cmd>HopChar1<cr>", "find in buffer" },
+    ["f"] = { "<cmd>HopChar1CurrentLine<cr>", "find in current line" },
   },
 }
 
@@ -173,11 +176,15 @@ M.fugitive = {
   },
 }
 
--- neotree
-M.neotree = {
+-- trouble
+M.trouble = {
   n = {
-    ["<leader>e"] = { "<cmd>Neotree reveal<cr>", "Neotree" },
-    ["<C-n>"] = { "<cmd>NeoTreeFocusToggle<cr>", "Neotree toggle" },
+    ["<leader>xx"] = { "<cmd>TroubleToggle<cr>", "Trouble Toggle" },
+    ["<leader>xw"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "TroubleToggle workspace_diagnostics" },
+    ["<leader>xd"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "TroubleToggle document_diagnostics" },
+    ["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", "TroubleToggle quickfix" },
+    ["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", "TroubleToggle loclist" },
+    ["gR"] = { "<cmd>TroubleToggle lsp_references<cr>", "TroubleToggle lsp_references" },
   },
 }
 

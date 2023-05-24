@@ -10,6 +10,7 @@ local servers = {
   "clangd",
   "emmet_ls",
   "bashls",
+  "pyright",
 }
 
 for _, lsp in ipairs(servers) do

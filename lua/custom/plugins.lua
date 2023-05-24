@@ -32,26 +32,9 @@ local plugins = {
     opts = overrides.mason,
   },
 
-  -- disable nvim-tree, use neo-tree instead
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
-    enabled = false,
-  },
-
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    cmd = { "Neotree", "NeoTreeFocusToggle" },
-    dependencies = {
-      {
-        "nvim-lua/plenary.nvim",
-        "MunifTanjim/nui.nvim",
-        "mrbjarksen/neo-tree-diagnostics.nvim",
-      },
-    },
-    config = function()
-      require "custom.configs.neo-tree"
-    end,
   },
 
   -- Install a plugin
@@ -90,7 +73,7 @@ local plugins = {
   -- lsp progress ui
   {
     "j-hui/fidget.nvim",
-    lazy = false,
+    event = "LspAttach",
     config = function()
       require("fidget").setup()
     end,
@@ -145,7 +128,7 @@ local plugins = {
           enabled = true,
           auto_trigger = true,
           keymap = {
-            accept = "<M-l>",
+            accept = "<M-p>",
             accept_word = false,
             accept_line = false,
             next = "<M-]>",
@@ -154,6 +137,16 @@ local plugins = {
           },
         },
       }
+    end,
+  },
+
+  -- trouble nvim
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = { "TroubleToggle", "Trouble" },
+    config = function()
+      require "custom.configs.trouble"
     end,
   },
 }
