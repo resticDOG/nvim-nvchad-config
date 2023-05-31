@@ -45,6 +45,8 @@ M.mason = {
 
     -- java
     "jdtls",
+    "java-debug-adapter",
+    "java-test",
 
     -- bash stuff
     "bash-language-server",

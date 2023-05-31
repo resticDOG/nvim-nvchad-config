@@ -1,9 +1,12 @@
--- table size  
+-- table size
 vim.opt_local.shiftwidth = 4
 vim.opt_local.tabstop = 4
 
 local home = os.getenv "HOME"
-local jdtls_dir = home .. "/.local/share/nvim/mason/packages/jdtls"
+local mason_dir = home .. "/.local/share/nvim/mason/packages"
+local jdtls_dir = mason_dir .. "/jdtls"
+local java_debug_dir = mason_dir .. "/java-debug-adapter"
+local java_test_dir = mason_dir .. "/java-test"
 local jdtls = require "jdtls"
 local root_markers = { "gradlew", "mvnw", ".git" }
 local root_dir = require("jdtls.setup").find_root(root_markers)
@@ -37,12 +40,9 @@ local on_attach = function(client, bufnr)
 end
 
 local bundles = {
-  vim.fn.glob(
-    home
-      .. "/.m2/repository/com/microsoft/java/com.microsoft.java.debug.plugin/0.44.0/com.microsoft.java.debug.plugin-0.44.0.jar"
-  ),
+  vim.fn.glob(java_debug_dir .. "/extension/server/com.microsoft.java.debug.plugin-*.jar"),
 }
-vim.list_extend(bundles, vim.split(vim.fn.glob(home .. "/apps/vscode-java-test/server/*.jar"), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_dir .. "/extensions/server/*.jar"), "\n"))
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
