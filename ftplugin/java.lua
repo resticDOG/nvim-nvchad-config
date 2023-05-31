@@ -3,6 +3,8 @@ vim.opt_local.shiftwidth = 4
 vim.opt_local.tabstop = 4
 
 local home = os.getenv "HOME"
+local JAVA_HOME = os.getenv "JAVA_HOME" .. ""
+local JAVA_HOME_17 = string.gsub(JAVA_HOME, "(.*java).*(openjdk.*)", "%1-17-%2")
 local mason_dir = home .. "/.local/share/nvim/mason/packages"
 local jdtls_dir = mason_dir .. "/jdtls"
 local java_debug_dir = mason_dir .. "/java-debug-adapter"
@@ -104,14 +106,19 @@ local config = {
         runtimes = {
           {
             name = "JavaSE-17",
-            path = "/usr/lib/jvm/java-17-openjdk-amd64",
+            path = JAVA_HOME_17,
+            default = true,
+          },
+          {
+            name = "JavaSE-1.8",
+            path = JAVA_HOME,
           },
         },
       },
     },
   },
   cmd = {
-    "java",
+    JAVA_HOME_17 .. "/bin/java",
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",

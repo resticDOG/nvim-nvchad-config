@@ -10,6 +10,7 @@ filetype.setup {
       -- Set the filetype for wechat miniprogram stuff
       wxml = "html",
       wxss = "css",
+      xml = "xml",
     },
     literal = {
       -- Set the filetype of files named "MyBackupFile" to lua
