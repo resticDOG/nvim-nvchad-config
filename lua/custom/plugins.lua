@@ -149,6 +149,33 @@ local plugins = {
       require "custom.configs.trouble"
     end,
   },
+
+  -- maven
+  {
+    "eatgrass/maven.nvim",
+    cmd = "Maven",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("maven").setup {
+        executable = "./mvnw",
+      }
+    end,
+  },
+
+  -- dressing-nvim vim.select handling
+  {
+    "stevearc/dressing.nvim",
+    event = "BufRead",
+    config = function()
+      require("dressing").setup()
+    end,
+  },
+
+  -- auto save
+  {
+    "Pocco81/auto-save.nvim",
+    event = "BufEnter",
+  },
 }
 
 return plugins

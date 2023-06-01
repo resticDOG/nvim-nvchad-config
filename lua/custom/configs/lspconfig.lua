@@ -21,10 +21,11 @@ for _, lsp in ipairs(servers) do
 end
 
 -- volar take over mode
+local nvm_node_dir = os.getenv "NVM_DIR" .. "/versions/node/v18.16.0"
 lspconfig.volar.setup {
   init_options = {
     typescript = {
-      tsdk = "/home/linkzz/.nvm/versions/node/v18.14.0/lib/node_modules/typescript/lib",
+      tsdk = nvm_node_dir .. "/lib/node_modules/typescript/lib",
     },
   },
   filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
