@@ -111,10 +111,13 @@ local plugins = {
     end,
   },
 
-  -- vim fugitive
+  -- neogit
   {
-    "tpope/vim-fugitive",
-    cmd = { "Git" },
+    "TimUntersberger/neogit",
+    cmd = { "Neogit" },
+    config = function()
+      require("neogit").setup {}
+    end,
   },
 
   -- copilot
@@ -162,6 +165,13 @@ local plugins = {
     end,
   },
 
+  -- markdown preview
+  {
+    "ellisonleao/glow.nvim",
+    config = true,
+    cmd = { "Glow" },
+  },
+
   -- dressing-nvim vim.select handling
   {
     "stevearc/dressing.nvim",
@@ -175,6 +185,9 @@ local plugins = {
   {
     "Pocco81/auto-save.nvim",
     event = "BufEnter",
+    config = function()
+      require "custom.configs.auto-save"
+    end,
   },
 }
 
