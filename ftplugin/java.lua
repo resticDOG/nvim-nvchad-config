@@ -44,7 +44,7 @@ end
 local bundles = {
   vim.fn.glob(java_debug_dir .. "/extension/server/com.microsoft.java.debug.plugin-*.jar"),
 }
-vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_dir .. "/extensions/server/*.jar"), "\n"))
+vim.list_extend(bundles, vim.split(vim.fn.glob(java_test_dir .. "/extension/server/*.jar"), "\n"))
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
