@@ -63,7 +63,7 @@ M.nvimtree = {
   },
 
   view = {
-    width = 60,
+    width = 50,
   },
 
   renderer = {

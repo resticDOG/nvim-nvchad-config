@@ -37,15 +37,6 @@ local plugins = {
     opts = overrides.nvimtree,
   },
 
-  -- Install a plugin
-  {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
-  },
-
   {
     "phaazon/hop.nvim",
     cmd = { "HopChar1CurrentLine", "HopChar1" },
@@ -103,13 +94,13 @@ local plugins = {
   },
 
   -- filetype nvim
-  {
-    "nathom/filetype.nvim",
-    lazy = false,
-    config = function()
-      require "custom.configs.filetype"
-    end,
-  },
+  -- {
+  --   "nathom/filetype.nvim",
+  --   lazy = false,
+  --   config = function()
+  --     require "custom.configs.filetype"
+  --   end,
+  -- },
 
   -- neogit
   {
@@ -120,26 +111,11 @@ local plugins = {
     end,
   },
 
-  -- copilot
   {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
+    "LhKipp/nvim-nu",
+    event = "BufRead",
     config = function()
-      require("copilot").setup {
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          keymap = {
-            accept = "<M-p>",
-            accept_word = false,
-            accept_line = false,
-            next = "<M-]>",
-            prev = "<M-[>",
-            dismiss = "<C-]>",
-          },
-        },
-      }
+      require("nu").setup {}
     end,
   },
 
@@ -189,6 +165,56 @@ local plugins = {
       require "custom.configs.auto-save"
     end,
   },
+
+  {
+    "hrsh7th/nvim-cmp",
+    opts = function()
+      local cmp_conf = require "plugins.configs.cmp"
+      table.insert(cmp_conf.sources, { name = "codeium" })
+
+      return cmp_conf
+    end,
+  },
+
+  {
+    "jcdickinson/http.nvim",
+    build = "cargo build --workspace --release",
+  },
+
+  {
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup {
+        suggestion = {
+          enabled = true,
+          auto_trigger = true,
+          keymap = {
+            accept = "<M-p>",
+            accept_word = false,
+            accept_line = false,
+            next = "<M-]>",
+            prev = "<M-[>",
+            dismiss = "<C-]>",
+          },
+        },
+      }
+    end,
+  },
+
+  -- codeium
+  -- {
+  --   "jcdickinson/codeium.nvim",
+  --   event = "BufEnter",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "hrsh7th/nvim-cmp",
+  --   },
+  --   config = function()
+  --     require("codeium").setup {}
+  --   end,
+  -- },
 }
 
 return plugins

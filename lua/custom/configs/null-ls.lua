@@ -11,7 +11,7 @@ local sources = {
   -- git
   b.code_actions.gitsigns,
 
-  -- webdev stuff
+  -- web dev stuff
   b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
   b.formatting.prettierd, -- 使用默认配置
   b.code_actions.eslint_d, -- eslintd

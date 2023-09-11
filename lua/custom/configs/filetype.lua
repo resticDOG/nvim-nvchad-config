@@ -11,6 +11,8 @@ filetype.setup {
       wxml = "html",
       wxss = "css",
       xml = "xml",
+      html = "html",
+      css = "css",
     },
     literal = {
       -- Set the filetype of files named "MyBackupFile" to lua
