@@ -23,7 +23,7 @@ fedget.setup {
     relative = "win", -- where to anchor, either "win" or "editor"
     blend = 100, -- &winblend for the window
     zindex = nil, -- the zindex value for the window
-    border = "double", -- style of border for the fidget window
+    border = "single", -- style of border for the fidget window
   },
   fmt = {
     leftpad = true, -- right-justify text in fidget box
