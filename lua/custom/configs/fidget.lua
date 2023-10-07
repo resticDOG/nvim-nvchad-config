@@ -5,7 +5,7 @@ end
 
 fedget.setup {
   text = {
-    spinner = "circle_quarters", -- animation shown when tasks are ongoing
+    spinner = "dots_footsteps", -- animation shown when tasks are ongoing
     done = "👌", -- character shown when all tasks are complete
     commenced = "Started", -- message shown when task starts
     completed = "Completed", -- message shown when task completes
