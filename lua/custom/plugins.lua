@@ -176,11 +176,6 @@ local plugins = {
     end,
   },
 
-  {
-    "jcdickinson/http.nvim",
-    build = "cargo build --workspace --release",
-  },
-
   -- {
   --   "zbirenbaum/copilot.lua",
   --   cmd = "Copilot",
