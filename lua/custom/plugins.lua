@@ -64,9 +64,10 @@ local plugins = {
   -- lsp progress ui
   {
     "j-hui/fidget.nvim",
+    tag = "legacy",
     event = "LspAttach",
     config = function()
-      require("fidget").setup()
+      require "custom.configs.fidget"
     end,
   },
 
