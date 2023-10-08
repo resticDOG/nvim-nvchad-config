@@ -169,10 +169,11 @@ M.hop = {
 }
 
 -- fugitive
-M.fugitive = {
+M.git = {
   n = {
-    ["<leader>gb"] = { "<cmd>Git blame<cr>", "Git blame" },
+    ["<leader>gb"] = { "<cmd>Gitsigns blame_line<cr>", "Git blame" },
     ["<leader>gd"] = { "<cmd>Git diff<cr>", "Git diff" },
+    ["<leader>gl"] = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Git toggle current line blame" },
   },
 }
 
