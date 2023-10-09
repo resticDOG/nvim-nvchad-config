@@ -53,6 +53,10 @@ M.mason = {
 
     -- python stuff
     "pyright",
+
+    -- xml
+    "lemminx",
+    "xmlformat",
   },
 }
 

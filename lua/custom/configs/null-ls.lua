@@ -16,8 +16,11 @@ local sources = {
   b.formatting.prettierd, -- 使用默认配置
   b.code_actions.eslint_d, -- eslintd
 
-  -- Lua
+  -- lua
   b.formatting.stylua,
+
+  -- xml
+  b.formatting.xmlformat,
 }
 
 -- farmat on save
