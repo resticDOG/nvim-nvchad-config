@@ -9,16 +9,20 @@ M.override = {
   -- neotree
   Comment = {
     bold = true,
-    fg = "gray",
+    italic = true,
+    fg = "teal",
+  },
+  Visual = {
+    bg = "gray",
+  },
+  Identifier = {
+    fg = "white",
   },
 }
 
 ---@type HLTable
 M.add = {
   NvimTreeOpenedFolderName = { fg = "green", bold = true },
-  -- neotree
-  NeoTreeDirectoryName = { fg = "blue" },
-  NeoTreeDirectoryIcon = { fg = "blue" },
 }
 
 return M

@@ -18,9 +18,6 @@ local sources = {
 
   -- lua
   b.formatting.stylua,
-
-  -- xml
-  b.formatting.xmlformat,
 }
 
 -- farmat on save

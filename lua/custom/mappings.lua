@@ -3,10 +3,10 @@ local M = {}
 
 M.general = {
   n = {
-    [";"] = { ":", "enter command mode", opts = { nowait = true } },
-    ["<C-z>"] = { "u", "un do", opts = { nowait = true } },
-    ["<C-q>"] = { "<C-v>", "multiple line select", opts = { nowait = true } },
-    ["qq"] = { ":qa!<CR>", "force quit without save", opts = { nowait = true } },
+    [";"] = { ":", "Enter command mode", opts = { nowait = true } },
+    ["<C-z>"] = { "u", "Un do", opts = { nowait = true } },
+    ["<C-q>"] = { "<C-v>", "Multiple line select", opts = { nowait = true } },
+    ["qq"] = { ":qa!<CR>", "Force quit without save", opts = { nowait = true } },
   },
 }
 
@@ -28,7 +28,7 @@ M.jdtls = {
       function()
         vim.lsp.buf.hover()
       end,
-      "Show method",
+      "Show method description",
     },
     ["<leader>ca"] = {
       function()
@@ -63,13 +63,13 @@ M.jdtls = {
       end,
       "organize imports",
     },
-    ["<leader>vc"] = {
+    ["<leader> tc"] = {
       function()
         require("jdtls").test_class()
       end,
       "Test class",
     },
-    ["<leader>vm"] = {
+    ["<leader>tn"] = {
       function()
         require("jdtls").test_nearest_method()
       end,
@@ -124,12 +124,6 @@ M.dap = {
       end,
       "Dap float console",
     },
-    ["<leader>s"] = {
-      function()
-        require("dap").close()
-      end,
-      "Dap stop",
-    },
     ["<leader>so"] = {
       function()
         require("dap").step_over()
@@ -174,6 +168,7 @@ M.git = {
     ["<leader>gb"] = { "<cmd>Gitsigns blame_line<cr>", "Git blame" },
     ["<leader>gd"] = { "<cmd>Git diff<cr>", "Git diff" },
     ["<leader>gl"] = { "<cmd>Gitsigns toggle_current_line_blame<cr>", "Git toggle current line blame" },
+    ["<leader>gn"] = { "<cmd>Neogit<cr>", "Neogit" },
   },
 }
 

@@ -62,14 +62,14 @@ local plugins = {
   },
 
   -- lsp progress ui
-  {
-    "j-hui/fidget.nvim",
-    tag = "legacy",
-    event = "LspAttach",
-    config = function()
-      require "custom.configs.fidget"
-    end,
-  },
+  -- {
+  --   "j-hui/fidget.nvim",
+  --   tag = "legacy",
+  --   event = "LspAttach",
+  --   config = function()
+  --     require "custom.configs.fidget"
+  --   end,
+  -- },
 
   -- autotag
   {
@@ -215,6 +215,18 @@ local plugins = {
     },
     config = function()
       require("codeium").setup {}
+    end,
+  },
+
+  -- sg.nvim
+  {
+    "sourcegraph/sg.nvim",
+    event = "BufEnter",
+    dependencies = {
+      "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
+    },
+    config = function()
+      require("sg").setup {}
     end,
   },
 }
