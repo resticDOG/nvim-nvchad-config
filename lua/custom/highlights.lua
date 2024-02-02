@@ -13,7 +13,7 @@ M.override = {
     fg = "teal",
   },
   Visual = {
-    bg = "gray",
+    bg = "#24472d",
   },
   Identifier = {
     fg = "white",

@@ -217,18 +217,6 @@ local plugins = {
       require("codeium").setup {}
     end,
   },
-
-  -- sg.nvim
-  {
-    "sourcegraph/sg.nvim",
-    event = "BufEnter",
-    dependencies = {
-      "nvim-lua/plenary.nvim", --[[ "nvim-telescope/telescope.nvim ]]
-    },
-    config = function()
-      require("sg").setup {}
-    end,
-  },
 }
 
 return plugins

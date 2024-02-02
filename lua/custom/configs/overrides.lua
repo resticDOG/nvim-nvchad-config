@@ -56,7 +56,10 @@ M.mason = {
 
     -- xml
     "lemminx",
-    "xmlformat",
+    "xmlformatter",
+
+    -- powershell
+    "powershell-editor-services",
   },
 }
 
