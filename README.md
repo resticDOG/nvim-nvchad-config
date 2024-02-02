@@ -1,3 +1,5 @@
+> English | [简体中文](./README_zh_CN.md)
+
 ## Prerequisites
 
 This project is based on [Nvchad](https://github.com/NvChad/NvChad), and the
