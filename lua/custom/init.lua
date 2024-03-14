@@ -1,18 +1,35 @@
 local opt = vim.opt
 
-opt.clipboard = "unnamedplus"
-vim.g.clipboard = {
-  name = "win32yank-wsl",
-  copy = {
-    ["+"] = "win32yank.exe -i --crlf",
-    ["*"] = "win32yank.exe -i --crlf",
-  },
-  paste = {
-    ["+"] = "win32yank.exe -o --lf",
-    ["*"] = "win32yank.exe -o --lf",
-  },
-  cache_enabled = 0,
-}
+local function is_wsl()
+  local output = vim.fn.systemlist("uname -r")
+  local result = false
+
+  for _, line in ipairs(output) do
+    if line:find("microsoft", 1, true) then
+      result = true
+      break
+    end
+  end
+
+  return result
+end
+
+if is_wsl() then
+  opt.clipboard = "unnamedplus"
+  vim.g.clipboard = {
+    name = "win32yank-wsl",
+    copy = {
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
+    },
+    cache_enabled = 0,
+  }
+end
+
 
 -- vim.api.nvim_create_autocmd("VimEnter", {
 --   pattern = "*",
