@@ -106,4 +106,10 @@ M.nvimtree = {
   },
 }
 
+M.nvterm = {
+  terminals = {
+    shell = "nu",
+  },
+}
+
 return M
