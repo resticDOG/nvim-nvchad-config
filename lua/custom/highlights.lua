@@ -6,7 +6,6 @@ local M = {}
 
 ---@type HLTable
 M.override = {
-  -- neotree
   Comment = {
     bold = true,
     italic = true,

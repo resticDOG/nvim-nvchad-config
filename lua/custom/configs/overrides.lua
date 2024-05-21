@@ -1,3 +1,4 @@
+local is_windows = require("custom.utils").is_windows
 local M = {}
 
 M.treesitter = {
@@ -106,9 +107,10 @@ M.nvimtree = {
   },
 }
 
+-- Use nushell for shell on windows
 M.nvterm = {
   terminals = {
-    shell = "nu",
+    shell = is_windows() and "nu",
   },
 }
 

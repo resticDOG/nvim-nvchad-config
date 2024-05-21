@@ -1,18 +1,5 @@
 local opt = vim.opt
-
-local function is_wsl()
-  local output = vim.fn.systemlist("uname -r")
-  local result = false
-
-  for _, line in ipairs(output) do
-    if line:find("microsoft", 1, true) then
-      result = true
-      break
-    end
-  end
-
-  return result
-end
+local is_wsl = require("custom.utils").is_wsl
 
 if is_wsl() then
   opt.clipboard = "unnamedplus"
@@ -29,7 +16,6 @@ if is_wsl() then
     cache_enabled = 0,
   }
 end
-
 
 -- vim.api.nvim_create_autocmd("VimEnter", {
 --   pattern = "*",
