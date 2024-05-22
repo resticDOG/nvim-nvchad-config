@@ -65,16 +65,6 @@ local plugins = {
     end,
   },
 
-  -- lsp progress ui
-  -- {
-  --   "j-hui/fidget.nvim",
-  --   tag = "legacy",
-  --   event = "LspAttach",
-  --   config = function()
-  --     require "custom.configs.fidget"
-  --   end,
-  -- },
-
   -- autotag
   {
     "windwp/nvim-ts-autotag",
@@ -109,17 +99,17 @@ local plugins = {
 
   -- neogit
   {
-    "TimUntersberger/neogit",
+    "NeogitOrg/neogit",
+    cmd = { "Neogit" },
     dependencies = {
       "nvim-lua/plenary.nvim", -- required
+      "sindrets/diffview.nvim", -- optional - Diff integration
+
+      -- Only one of these is needed, not both.
       "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim", -- optional
       "ibhagwan/fzf-lua", -- optional
     },
-    cmd = { "Neogit" },
-    config = function()
-      require("neogit").setup {}
-    end,
+    config = true,
   },
 
   {
@@ -186,28 +176,6 @@ local plugins = {
       return cmp_conf
     end,
   },
-
-  -- {
-  --   "zbirenbaum/copilot.lua",
-  --   cmd = "Copilot",
-  --   event = "InsertEnter",
-  --   config = function()
-  --     require("copilot").setup {
-  --       suggestion = {
-  --         enabled = true,
-  --         auto_trigger = true,
-  --         keymap = {
-  --           accept = "<M-p>",
-  --           accept_word = false,
-  --           accept_line = false,
-  --           next = "<M-]>",
-  --           prev = "<M-[>",
-  --           dismiss = "<C-]>",
-  --         },
-  --       },
-  --     }
-  --   end,
-  -- },
 
   -- codeium
   {
