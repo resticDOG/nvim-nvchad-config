@@ -22,6 +22,7 @@ M.treesitter = {
     "markdown_inline",
     "python",
     "comment",
+    "nu",
   },
   comment = {
     enable = true,
@@ -30,6 +31,8 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
+    -- clangd
+    "clangd",
     -- lua stuff
     "lua-language-server",
     "stylua",
