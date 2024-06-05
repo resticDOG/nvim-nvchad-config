@@ -32,3 +32,6 @@ opt.foldlevel = 20
 opt.autowrite = true
 opt.autowriteall = true
 opt.updatetime = 300
+
+-- 相对行号
+opt.relativenumber = true

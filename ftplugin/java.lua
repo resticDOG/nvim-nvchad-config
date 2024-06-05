@@ -5,6 +5,7 @@ vim.opt_local.tabstop = 4
 local home = os.getenv "HOME"
 local JAVA_HOME = os.getenv "JAVA_HOME" .. ""
 local JAVA_HOME_17 = string.gsub(JAVA_HOME, "(.*java).*(openjdk.*)", "%1-17-%2")
+local JAVA_HOME_8 = string.gsub(JAVA_HOME, "(.*java).*(openjdk.*)", "%1-8-%2")
 local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
 local jdtls_dir = mason_path .. "packages/jdtls"
 local java_debug_dir = mason_path .. "packages/java-debug-adapter"
@@ -93,7 +94,7 @@ local config = {
           },
           {
             name = "JavaSE-1.8",
-            path = JAVA_HOME,
+            path = JAVA_HOME_8,
           },
         },
       },
