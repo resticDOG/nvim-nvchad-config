@@ -32,8 +32,8 @@ M.jdtls = {
     },
     ["<leader>ca"] = {
       function()
-        vim.lsp.buf.code_action()
-        -- require("actions-preview").code_actions()
+        -- vim.lsp.buf.code_action()
+        require("actions-preview").code_actions()
       end,
       "Code action",
     },
