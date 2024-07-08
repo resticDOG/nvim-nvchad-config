@@ -10,6 +10,9 @@ filetype.setup {
       -- Set the filetype for wechat miniprogram stuff
       wxml = "html",
       wxss = "css",
+      -- dingtalk miniprogram
+      axml = "html",
+      acss = "css",
       xml = "xml",
       html = "html",
       css = "css",
