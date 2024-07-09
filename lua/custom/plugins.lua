@@ -53,16 +53,17 @@ local plugins = {
   {
     "rcarriga/nvim-dap-ui",
     dependencies = {
-      {
-        "mfussenegger/nvim-dap",
-      },
-      {
-        "mfussenegger/nvim-jdtls",
-      },
+      "mfussenegger/nvim-dap",
+      "nvim-neotest/nvim-nio",
     },
     config = function()
       require "custom.configs.dapui"
     end,
+  },
+
+  -- nvim-jdtls
+  {
+    "mfussenegger/nvim-jdtls",
   },
 
   -- autotag
@@ -84,7 +85,7 @@ local plugins = {
     "aznhe21/actions-preview.nvim",
     lazy = false,
     config = function()
-      require("actions-preview").setup()
+      require "custom.configs.actions-preview"
     end,
   },
 
