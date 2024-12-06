@@ -9,9 +9,9 @@ M.override = {
   ["@comment"] = {
     fg = "#579685",
   },
-  Visual = {
-    bg = "#24472d",
-  },
+  -- Visual = {
+  --   bg = "light_grey",
+  -- },
   Identifier = {
     fg = "white",
   },

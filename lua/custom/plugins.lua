@@ -197,30 +197,12 @@ local plugins = {
     event = "VeryLazy",
     lazy = false,
     version = false, -- set this if you want to always pull the latest change
-    opts = {
-      -- add any opts here
-      provider = "openai",
-      openai = {
-        endpoint = "https://models.inference.ai.azure.com/chat/completions#",
-        model = "gpt-4o",
-        timeout = 30000, -- Timeout in milliseconds
-        temperature = 0,
-        max_tokens = 4096,
-        ["local"] = false,
-      },
-      azure = {
-        endpoint = "https://models.inference.ai.azure.com/chat/completions#", -- example: "https://<your-resource-name>.openai.azure.com"
-        deployment = "gpt-4o", -- Azure deployment name (e.g., "gpt-4o", "my-gpt-4o-deployment")
-        api_version = "2024-06-01",
-        timeout = 30000, -- Timeout in milliseconds
-        temperature = 0,
-        max_tokens = 4096,
-        ["local"] = false,
-      },
-    },
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     build = "make",
     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+    config = function()
+      require "custom.configs.avante"
+    end,
     dependencies = {
       "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
