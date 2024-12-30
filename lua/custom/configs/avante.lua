@@ -5,14 +5,39 @@ end
 
 avante.setup {
   -- add any opts here
-  provider = "openai",
-  auto_suggestions_provider = "openai",
-  openai = {
-    endpoint = "https://models.inference.ai.azure.com/chat/completions#",
-    model = "gpt-4o",
-    timeout = 30000, -- Timeout in milliseconds
-    temperature = 0,
-    max_tokens = 4096,
+  provider = "groq",
+  auto_suggestions_provider = "qwen",
+  vendors = {
+    groq = {
+      __inherited_from = "openai",
+      api_key_name = "GROQ_API_KEY",
+      endpoint = "https://api.groq.com/openai/v1/",
+      model = "llama-3.1-70b-versatile",
+    },
+    github_model = {
+      __inherited_from = "openai",
+      api_key_name = "GITHUB_API_KEY",
+      endpoint = "https://models.inference.ai.azure.com/chat/completions#",
+      model = "gpt-4o",
+    },
+    ollama = {
+      __inherited_from = "openai",
+      api_key_name = "",
+      endpoint = "http://10.1.1.63:11434/v1",
+      model = "qwen2.5-coder",
+    },
+    qwen = {
+      __inherited_from = "openai",
+      api_key_name = "",
+      endpoint = "http://10.1.1.63:11434/v1",
+      model = "qwen2.5-coder:1.5b",
+    },
+    starcoder = {
+      __inherited_from = "openai",
+      api_key_name = "",
+      endpoint = "http://10.1.1.63:11434/v1",
+      model = "starcoder2:7b",
+    },
   },
   dual_boost = {
     enabled = false,
@@ -22,7 +47,7 @@ avante.setup {
     timeout = 60000, -- Timeout in milliseconds
   },
   behaviour = {
-    auto_suggestions = true, -- Experimental stage
+    auto_suggestions = false, -- Experimental stage
     auto_set_highlight_group = true,
     auto_set_keymaps = true,
     auto_apply_diff_after_generation = false,

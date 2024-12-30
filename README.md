@@ -13,7 +13,7 @@ following conditions need to be met before usage:
 
 ## Usage
 
-### Windows Platform
+### Windows
 
 - Install `Neovim`, `gcc`, `make`, `ripgrep`
 
@@ -42,4 +42,4 @@ cd nvim-nvchad-config
 nvim
 ```
 
-### Linux Platform (TODO)
+### Linux
