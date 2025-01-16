@@ -5,8 +5,8 @@ end
 
 avante.setup {
   -- add any opts here
-  provider = "groq",
-  auto_suggestions_provider = "qwen",
+  provider = "github_model",
+  auto_suggestions_provider = "starcoder",
   vendors = {
     groq = {
       __inherited_from = "openai",
@@ -37,6 +37,24 @@ avante.setup {
       api_key_name = "",
       endpoint = "http://10.1.1.63:11434/v1",
       model = "starcoder2:7b",
+    },
+    qwencoder = {
+      __inherited_from = "openai",
+      api_key_name = "NEW_API_KEY",
+      endpoint = "http://10.1.1.137:3060/v1",
+      model = "qwen/qwen-2.5-coder-32b-instruct",
+    },
+    deepseek = {
+      __inherited_from = "openai",
+      api_key_name = "NEW_API_KEY",
+      endpoint = "https://newapi.linkzz.hm/v1",
+      model = "deepseek/deepseek-chat",
+    },
+    claude = {
+      __inherited_from = "openai",
+      api_key_name = "NEW_API_KEY",
+      endpoint = "http://10.1.1.137:3060/v1",
+      model = "anthropic/claude-3.5-sonnet",
     },
   },
   dual_boost = {
