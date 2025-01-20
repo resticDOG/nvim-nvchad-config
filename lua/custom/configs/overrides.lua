@@ -22,7 +22,6 @@ M.treesitter = {
     "markdown_inline",
     "python",
     "comment",
-    "nu",
   },
   comment = {
     enable = true,
