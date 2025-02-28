@@ -325,6 +325,15 @@ local plugins = {
       }
     end,
   },
+
+  -- jupyter ipynb
+  {
+    "geg2102/nvim-jupyter-client",
+    event = "BufRead",
+    config = function()
+      require("nvim-jupyter-client").setup {}
+    end,
+  },
 }
 
 return plugins
