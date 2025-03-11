@@ -131,25 +131,6 @@ local plugins = {
     end,
   },
 
-  -- maven
-  {
-    "eatgrass/maven.nvim",
-    cmd = "Maven",
-    dependencies = "nvim-lua/plenary.nvim",
-    config = function()
-      require("maven").setup {
-        executable = "./mvnw",
-      }
-    end,
-  },
-
-  -- markdown preview
-  {
-    "ellisonleao/glow.nvim",
-    config = true,
-    cmd = { "Glow" },
-  },
-
   -- dressing-nvim vim.select handling
   {
     "stevearc/dressing.nvim",
@@ -191,63 +172,20 @@ local plugins = {
   --   end,
   -- },
 
-  -- use nvim as cursor
-  -- {
-  --   "yetone/avante.nvim",
-  --   event = "VeryLazy",
-  --   lazy = false,
-  --   version = false, -- set this if you want to always pull the latest change
-  --   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-  --   build = "make",
-  --   -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
-  --   config = function()
-  --     require "custom.configs.avante"
-  --   end,
-  --   dependencies = {
-  --     "stevearc/dressing.nvim",
-  --     "nvim-lua/plenary.nvim",
-  --     "MunifTanjim/nui.nvim",
-  --     --- The below dependencies are optional,
-  --     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-  --     "zbirenbaum/copilot.lua", -- for providers='copilot'
-  --     {
-  --       -- support for image pasting
-  --       "HakonHarnes/img-clip.nvim",
-  --       event = "VeryLazy",
-  --       opts = {
-  --         -- recommended settings
-  --         default = {
-  --           embed_image_as_base64 = false,
-  --           prompt_for_file_name = false,
-  --           drag_and_drop = {
-  --             insert_mode = true,
-  --           },
-  --           -- required for Windows users
-  --           use_absolute_path = true,
-  --         },
-  --       },
-  --     },
-  --     {
-  --       -- Make sure to set this up properly if you have lazy=true
-  --       "MeanderingProgrammer/render-markdown.nvim",
-  --       opts = {
-  --         file_types = { "markdown", "Avante" },
-  --       },
-  --       ft = { "markdown", "Avante" },
-  --     },
-  --   },
-  -- },
-
   -- nvim ai coding
   {
     "olimorris/codecompanion.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
+      "j-hui/fidget.nvim",
     },
     lazy = false,
     config = function()
-      require "custom.configs.codecompanion"
+      require "custom.configs.codecompanion.config"
+    end,
+    init = function()
+      require("custom.configs.codecompanion.fidget"):init()
     end,
   },
 
@@ -264,7 +202,9 @@ local plugins = {
   {
     "echasnovski/mini.nvim",
     version = false,
-    setup = true,
+    config = function()
+      require("mini.diff").setup()
+    end,
   },
 
   -- session manager
@@ -272,58 +212,6 @@ local plugins = {
     "olimorris/persisted.nvim",
     lazy = false, -- make sure the plugin is always loaded at startup
     config = true,
-  },
-
-  -- copilot
-  {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup {
-        panel = {
-          enabled = true,
-          auto_refresh = true,
-          keymap = {
-            jump_prev = "[[",
-            jump_next = "]]",
-            accept = "<CR>",
-            refresh = "gr",
-            open = "<M-CR>",
-          },
-          layout = {
-            position = "bottom", -- | top | left | right | horizontal | vertical
-            ratio = 0.4,
-          },
-        },
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          hide_during_completion = true,
-          debounce = 75,
-          keymap = {
-            accept = "<M-l>",
-            accept_word = false,
-            accept_line = false,
-            next = "<M-n>",
-            prev = "<M-p>",
-            dismiss = "<C-]>",
-          },
-        },
-        server_opts_overrides = {
-          trace = "verbose",
-          settings = {
-            advanced = {
-              listCount = 7, -- #completions for panel
-              inlineSuggestCount = 3, -- #completions for getCompletions
-              debug = {
-                overrideProxyUrl = "http://10.1.1.63:11437",
-              },
-            },
-          },
-        },
-      }
-    end,
   },
 
   -- jupyter ipynb

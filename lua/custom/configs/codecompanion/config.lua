@@ -1,8 +1,12 @@
 local present, codecompanion = pcall(require, "codecompanion")
+local progress = require "fidget.progress"
+
 if not present then
   print "codecompanion not found"
   return
 end
+
+local M = {}
 local fmt = string.format
 local constants = {
   LLM_ROLE = "llm",
@@ -27,15 +31,63 @@ codecompanion.setup {
     deepseek = function()
       return require("codecompanion.adapters").extend("openai_compatible", {
         env = {
-          -- url = "https://newapi.linkzz.hm", -- optional: default value is ollama url http://127.0.0.1:11434
-          url = "https://openrouter.ai/api", -- optional: default value is ollama url http://127.0.0.1:11434
-          -- api_key = "NEW_API_KEY", -- optional: if your endpoint is authenticated
-          api_key = "OPENROUTER_API_KEY", -- optional: if your endpoint is authenticated
-          chat_url = "/v1/chat/completions", -- optional: default value, override if different
+          url = "https://vectorai.huidatech.cn",
+          api_key = "VECTORAI_API_KEY",
+          chat_url = "/v1/chat/completions",
         },
         schema = {
           model = {
-            default = "deepseek/deepseek-chat",
+            default = "deepseek-v3",
+          },
+          temperature = {
+            order = 2,
+            mapping = "parameters",
+            type = "number",
+            optional = true,
+            default = 0.8,
+            desc = "What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic. We generally recommend altering this or top_p but not both.",
+            validate = function(n)
+              return n >= 0 and n <= 2, "Must be between 0 and 2"
+            end,
+          },
+          max_completion_tokens = {
+            order = 3,
+            mapping = "parameters",
+            type = "integer",
+            optional = true,
+            default = nil,
+            desc = "An upper bound for the number of tokens that can be generated for a completion.",
+            validate = function(n)
+              return n > 0, "Must be greater than 0"
+            end,
+          },
+          stop = {
+            order = 4,
+            mapping = "parameters",
+            type = "string",
+            optional = true,
+            default = nil,
+            desc = "Sets the stop sequences to use. When this pattern is encountered the LLM will stop generating text and return. Multiple stop patterns may be set by specifying multiple separate stop parameters in a modelfile.",
+            validate = function(s)
+              return s:len() > 0, "Cannot be an empty string"
+            end,
+          },
+          logit_bias = {
+            order = 5,
+            mapping = "parameters",
+            type = "map",
+            optional = true,
+            default = nil,
+            desc = "Modify the likelihood of specified tokens appearing in the completion. Maps tokens (specified by their token ID) to an associated bias value from -100 to 100. Use https://platform.openai.com/tokenizer to find token IDs.",
+            subtype_key = {
+              type = "integer",
+            },
+            subtype = {
+              type = "integer",
+              validate = function(n)
+                return n >= -100 and n <= 100, "Must be between -100 and 100"
+              end,
+            },
           },
         },
       })
@@ -828,7 +880,7 @@ This is the code, for context:
       width = 95,
       height = 10,
       prompt = "Prompt ", -- Prompt used for interactive LLM calls
-      provider = "default", -- default|telescope|mini_pick
+      provider = "telescope", -- default|telescope|mini_pick
       opts = {
         show_default_actions = true, -- Show the default actions in the action palette?
         show_default_prompt_library = true, -- Show the default prompt library in the action palette?
@@ -944,3 +996,71 @@ When given a task:
     end,
   },
 }
+
+function M:init()
+  local group = vim.api.nvim_create_augroup("CodeCompanionFidgetHooks", {})
+
+  vim.api.nvim_create_autocmd({ "User" }, {
+    pattern = "CodeCompanionRequestStarted",
+    group = group,
+    callback = function(request)
+      local handle = M:create_progress_handle(request)
+      M:store_progress_handle(request.data.id, handle)
+    end,
+  })
+
+  vim.api.nvim_create_autocmd({ "User" }, {
+    pattern = "CodeCompanionRequestFinished",
+    group = group,
+    callback = function(request)
+      local handle = M:pop_progress_handle(request.data.id)
+      if handle then
+        M:report_exit_status(handle, request)
+        handle:finish()
+      end
+    end,
+  })
+end
+
+M.handles = {}
+
+function M:store_progress_handle(id, handle)
+  M.handles[id] = handle
+end
+
+function M:pop_progress_handle(id)
+  local handle = M.handles[id]
+  M.handles[id] = nil
+  return handle
+end
+
+function M:create_progress_handle(request)
+  return progress.handle.create {
+    title = " Requesting assistance (" .. request.data.strategy .. ")",
+    message = "In progress...",
+    lsp_client = {
+      name = M:llm_role_title(request.data.adapter),
+    },
+  }
+end
+
+function M:llm_role_title(adapter)
+  local parts = {}
+  table.insert(parts, adapter.formatted_name)
+  if adapter.model and adapter.model ~= "" then
+    table.insert(parts, "(" .. adapter.model .. ")")
+  end
+  return table.concat(parts, " ")
+end
+
+function M:report_exit_status(handle, request)
+  if request.data.status == "success" then
+    handle.message = "Completed"
+  elseif request.data.status == "error" then
+    handle.message = " Error"
+  else
+    handle.message = "󰜺 Cancelled"
+  end
+end
+
+return M
