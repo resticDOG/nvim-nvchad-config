@@ -35,3 +35,6 @@ opt.updatetime = 300
 
 -- 相对行号
 opt.relativenumber = true
+
+-- tabby 自动补全
+vim.g.tabby_inline_completion_keybinding_accept = "<M-p>"
