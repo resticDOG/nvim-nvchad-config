@@ -125,7 +125,7 @@ local plugins = {
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    cmd = { "TroubleToggle", "Trouble" },
+    cmd = "Trouble",
     config = function()
       require "custom.configs.trouble"
     end,

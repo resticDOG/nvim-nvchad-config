@@ -175,12 +175,15 @@ M.git = {
 -- trouble
 M.trouble = {
   n = {
-    ["<leader>xx"] = { "<cmd>TroubleToggle<cr>", "Trouble Toggle" },
-    ["<leader>xw"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "TroubleToggle workspace_diagnostics" },
-    ["<leader>xd"] = { "<cmd>TroubleToggle document_diagnostics<cr>", "TroubleToggle document_diagnostics" },
-    ["<leader>xq"] = { "<cmd>TroubleToggle quickfix<cr>", "TroubleToggle quickfix" },
-    ["<leader>xl"] = { "<cmd>TroubleToggle loclist<cr>", "TroubleToggle loclist" },
-    ["gR"] = { "<cmd>TroubleToggle lsp_references<cr>", "TroubleToggle lsp_references" },
+    ["<leader>xx"] = { "<cmd>Trouble diagnostics toggle<cr>", "Trouble Toggle" },
+    ["<leader>xX"] = { "<cmd>Trouble diagnostics toggle filter.buf=0<cr>", "Buffer Diagnostics (Trouble)" },
+    ["<leader>cs"] = { "<cmd>Trouble symbols toggle focus=false<cr>", "Symbols (Trouble)" },
+    ["<leader>cl"] = {
+      "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+      "LSP Definitions / references / ... (Trouble)",
+    },
+    ["<leader>xL"] = { "<cmd>Trouble loclist toggle<cr>", "Location List (Trouble)" },
+    ["<leader>xQ"] = { "<cmd>Trouble qflist toggle<cr>", "Quickfix List (Trouble)" },
   },
 }
 
@@ -188,7 +191,7 @@ M.trouble = {
 M.codecompanion = {
   n = {
     ["<leader>aa"] = { "<cmd>CodeCompanionChat Toggle<cr>", "Toggle codecompanion chat" },
-    ["<leader>ac"] = { "<cmd>CodeCompanionActions<cr>", "Toggle codecompanion actions" },
+    ["<leader>ac"] = { "<cmd>CodeCompanion /commit<cr>", "Toggle codecompanion commit message" },
   },
   v = {
     ["<leader>aa"] = { "<cmd>CodeCompanionChat Add<cr>", "Add code to codecompanion chat" },
