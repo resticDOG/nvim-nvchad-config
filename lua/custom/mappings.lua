@@ -198,4 +198,36 @@ M.codecompanion = {
   },
 }
 
+-- term
+M.nvterm = {
+  n = {
+    ["<leader>h"] = {
+      function()
+        require("nvterm.terminal").toggle "horizontal"
+      end,
+      "Toggle terminal horizontal",
+    },
+    ["<leader>v"] = {
+      function()
+        require("nvterm.terminal").toggle "vertical"
+      end,
+      "Toggle terminal vertical",
+    },
+  },
+  t = {
+    ["<leader>h"] = {
+      function()
+        require("nvterm.terminal").toggle "horizontal"
+      end,
+      "Toggle terminal horizontal",
+    },
+    ["<leader>v"] = {
+      function()
+        require("nvterm.terminal").toggle "vertical"
+      end,
+      "Toggle terminal vertical",
+    },
+  },
+}
+
 return M
