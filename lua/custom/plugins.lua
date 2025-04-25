@@ -90,13 +90,13 @@ local plugins = {
   },
 
   -- filetype nvim
-  {
-    "nathom/filetype.nvim",
-    lazy = false,
-    config = function()
-      require "custom.configs.filetype"
-    end,
-  },
+  -- {
+  --   "nathom/filetype.nvim",
+  --   lazy = false,
+  --   config = function()
+  --     require "custom.configs.filetype"
+  --   end,
+  -- },
 
   -- neogit
   {

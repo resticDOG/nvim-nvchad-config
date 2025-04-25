@@ -63,6 +63,9 @@ M.mason = {
 
     -- powershell
     "powershell-editor-services",
+
+    -- sql
+    "sqlls",
   },
 }
 

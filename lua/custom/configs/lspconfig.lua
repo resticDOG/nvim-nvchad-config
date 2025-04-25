@@ -16,6 +16,7 @@ local servers = {
   "bashls",
   "pyright",
   "lemminx",
+  "sqlls",
 }
 
 for _, lsp in ipairs(servers) do
