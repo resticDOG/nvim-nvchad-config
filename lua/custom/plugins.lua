@@ -159,19 +159,6 @@ local plugins = {
     end,
   },
 
-  -- codeium
-  -- {
-  --   "jcdickinson/codeium.nvim",
-  --   event = "BufEnter",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim",
-  --     "hrsh7th/nvim-cmp",
-  --   },
-  --   config = function()
-  --     require("codeium").setup {}
-  --   end,
-  -- },
-
   -- nvim ai coding
   {
     "olimorris/codecompanion.nvim",
@@ -189,13 +176,41 @@ local plugins = {
     end,
   },
 
+  -- mcp hub
+  {
+    "ravitemer/mcphub.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
+    },
+    -- uncomment the following line to load hub lazily
+    -- cmd = { "MCPHub", "CodeCompanion" }, -- lazy load
+    lazy = false,
+    build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
+    -- uncomment this if you don't want mcp-hub to be available globally or can't use -g
+    -- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
+    config = function()
+      require("mcphub").setup {
+        extensions = {
+          codecompanion = {
+            -- Show the mcp tool result in the chat buffer
+            auto_approve = true,
+            show_result_in_chat = true,
+            make_vars = true, -- make chat #variables from MCP server resources
+            make_slash_commands = true, -- make /slash_commands from MCP server prompts
+            auto_toggle_mcp_servers = true,
+          },
+        },
+      }
+    end,
+  },
+
   -- render-markdown
   {
     "MeanderingProgrammer/render-markdown.nvim",
     opts = {
-      file_types = { "markdown", "codecompanion" },
+      file_types = { "markdown", "codecompanion", "Avante" },
     },
-    ft = { "markdown", "codecompanion" },
+    ft = { "markdown", "codecompanion", "Avante" },
   },
 
   -- mini-diff

@@ -38,3 +38,6 @@ opt.relativenumber = true
 
 -- tabby 自动补全
 vim.g.tabby_inline_completion_keybinding_accept = "<M-p>"
+
+-- codecompanion 自动工具
+vim.g.codecompanion_auto_tool_mode = true
