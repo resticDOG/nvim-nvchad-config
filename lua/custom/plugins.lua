@@ -52,9 +52,12 @@ local plugins = {
   -- dap ui
   {
     "rcarriga/nvim-dap-ui",
+    event = "BufRead",
     dependencies = {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio",
+      "mfussenegger/nvim-dap-python",
+      "jay-babu/mason-nvim-dap.nvim",
     },
     config = function()
       require "custom.configs.dapui"
@@ -227,15 +230,6 @@ local plugins = {
     "olimorris/persisted.nvim",
     lazy = false, -- make sure the plugin is always loaded at startup
     config = true,
-  },
-
-  -- jupyter ipynb
-  {
-    "geg2102/nvim-jupyter-client",
-    event = "BufRead",
-    config = function()
-      require("nvim-jupyter-client").setup {}
-    end,
   },
 
   -- tabby llm code
