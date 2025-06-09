@@ -57,6 +57,8 @@ M.mason = {
     -- python stuff
     "pyright",
     "debugpy",
+    "flake8",
+    "black",
 
     -- xml
     "lemminx",

@@ -18,6 +18,12 @@ local sources = {
 
   -- lua
   b.formatting.stylua,
+
+  -- python
+  b.formatting.black,
+  b.diagnostics.flake8.with {
+    prefer_local = ".venv/bin",
+  },
 }
 
 -- farmat on save
