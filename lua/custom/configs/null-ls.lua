@@ -22,6 +22,11 @@ local sources = {
   -- python
   b.formatting.black,
   b.diagnostics.flake8.with {
+    extra_args = {
+      "--max-line-length=120",
+      "--ignore=E203,W503,E501,F401",
+      "--exclude=venv/*,build/*",
+    },
     prefer_local = ".venv/bin",
   },
 }

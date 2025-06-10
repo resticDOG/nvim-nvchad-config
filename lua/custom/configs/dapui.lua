@@ -7,10 +7,9 @@ if not present then
 end
 
 local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
-local debugpy_path = mason_path .. "packages/debugpy/venv/bin/python"
+local debugpy_path = mason_path .. "packages/debugpy/venv/Scripts/python"
 
 dap_python.setup(debugpy_path)
--- dap_python.setup "python3"
 mason_dap.setup {
   ensure_installed = { "python" },
 }
