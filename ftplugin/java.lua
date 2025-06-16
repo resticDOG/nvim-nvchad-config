@@ -4,6 +4,7 @@ vim.opt_local.tabstop = 4
 
 local home = os.getenv "HOME"
 local JAVA_HOME = os.getenv "JAVA_HOME" .. ""
+local JAVA_HOME_21 = string.gsub(JAVA_HOME, "(.*java).*(openjdk.*)", "%1-21-%2")
 local JAVA_HOME_17 = string.gsub(JAVA_HOME, "(.*java).*(openjdk.*)", "%1-17-%2")
 local JAVA_HOME_8 = string.gsub(JAVA_HOME, "(.*java).*(openjdk.*)", "%1-8-%2")
 local mason_path = vim.fn.glob(vim.fn.stdpath "data" .. "/mason/")
@@ -88,6 +89,10 @@ local config = {
       configuration = {
         runtimes = {
           {
+            name = "JavaSE-21",
+            path = JAVA_HOME_21,
+          },
+          {
             name = "JavaSE-17",
             path = JAVA_HOME_17,
             default = true,
@@ -101,7 +106,7 @@ local config = {
     },
   },
   cmd = {
-    JAVA_HOME_17 .. "/bin/java",
+    JAVA_HOME_21 .. "/bin/java",
     "-Declipse.application=org.eclipse.jdt.ls.core.id1",
     "-Dosgi.bundles.defaultStartLevel=4",
     "-Declipse.product=org.eclipse.jdt.ls.core.product",
