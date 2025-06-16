@@ -10,10 +10,21 @@ local sources = {
 
   -- git
   b.code_actions.gitsigns,
+  b.completion.spell,
 
   -- web dev stuff
-  b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
-  b.formatting.prettierd, -- 使用默认配置
+  -- b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
+  b.formatting.prettierd.with {
+    -- disabled_filetypes = { "markdown" },
+    extra_args = {
+      "--print-config",
+      "--log-level=error",
+      "--print-width=120",
+      "--tab-width=2",
+    },
+    prefer_local = ".venv/bin",
+  },
+  b.diagnostics.eslint_d,
   b.code_actions.eslint_d, -- eslintd
 
   -- lua

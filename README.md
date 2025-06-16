@@ -2,8 +2,7 @@
 
 ## Prerequisites
 
-This project is based on [Nvchad](https://github.com/NvChad/NvChad), and the
-following conditions need to be met before usage:
+This project is based on [Nvchad](https://github.com/NvChad/NvChad), and the following conditions need to be met before usage:
 
 1. [Neovim 0.9.4+](https://github.com/neovim/neovim/releases/tag/v0.9.4)
 2. Terminal font should be [Nerd Font](https://www.nerdfonts.com/)
