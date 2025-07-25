@@ -10,21 +10,28 @@ local sources = {
 
   -- git
   b.code_actions.gitsigns,
-  b.completion.spell,
 
   -- web dev stuff
   -- b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
   b.formatting.prettierd.with {
     -- disabled_filetypes = { "markdown" },
+    condition = function(utils)
+      return utils.root_has_file {
+        ".prettierrc",
+        ".prettierrc.json",
+        ".prettierrc.yaml",
+        ".prettierrc.yml",
+      }
+    end,
     extra_args = {
       "--print-config",
       "--log-level=error",
-      "--print-width=120",
-      "--tab-width=2",
+      "--print-width=80",
+      "--tab-width=4",
     },
-    prefer_local = ".venv/bin",
+    prefer_local = "node_modules/.bin",
   },
-  b.diagnostics.eslint_d,
+  -- b.diagnostics.eslint_d,
   b.code_actions.eslint_d, -- eslintd
 
   -- lua

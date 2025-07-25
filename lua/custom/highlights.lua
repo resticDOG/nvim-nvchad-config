@@ -8,10 +8,12 @@ local M = {}
 M.override = {
   ["@comment"] = {
     fg = "#579685",
+    italic = true,
   },
   Visual = {
-    bg = "light_grey",
-    underline = true,
+    -- bg = "#579685",
+    -- underline = true,
+    italic = true,
   },
   Identifier = {
     fg = "white",
