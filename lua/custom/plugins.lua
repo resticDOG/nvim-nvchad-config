@@ -6,6 +6,7 @@ local plugins = {
   -- Override plugin definition options
   {
     "neovim/nvim-lspconfig",
+    commit = "339ccc8",
     dependencies = {
       -- code formatting, linting etc
       {
@@ -24,25 +25,30 @@ local plugins = {
   -- overrde plugin configs
   {
     "nvim-treesitter/nvim-treesitter",
+    commit = "f197a15",
     opts = overrides.treesitter,
   },
   {
     "NvChad/nvterm",
+    commit = "9d7ba3b",
     opts = overrides.nvterm,
   },
 
   {
     "williamboman/mason.nvim",
+    commit = "e2f7f90",
     opts = overrides.mason,
   },
 
   {
     "nvim-tree/nvim-tree.lua",
+    commit = "d529a99",
     opts = overrides.nvimtree,
   },
 
   {
     "phaazon/hop.nvim",
+    commit = "1a1ecea",
     cmd = { "HopChar1CurrentLine", "HopChar1" },
     config = function()
       require("hop").setup()
@@ -52,11 +58,20 @@ local plugins = {
   -- dap ui
   {
     "rcarriga/nvim-dap-ui",
+    commit = "727c032",
     event = "BufRead",
     dependencies = {
       "mfussenegger/nvim-dap",
       "nvim-neotest/nvim-nio",
-      "mfussenegger/nvim-dap-python",
+      -- {
+      --   "mfussenegger/nvim-dap-python",
+      --   opts = {
+      --     rocks = {
+      --       enable = false,
+      --       hererocks = false,
+      --     },
+      --   },
+      -- },
       "jay-babu/mason-nvim-dap.nvim",
     },
     config = function()
@@ -67,11 +82,13 @@ local plugins = {
   -- nvim-jdtls
   {
     "mfussenegger/nvim-jdtls",
+    commit = "baae618",
   },
 
   -- autotag
   {
     "windwp/nvim-ts-autotag",
+    commit = "1cca23c",
     event = "BufRead",
     opts = {
       autotag = {
@@ -86,6 +103,7 @@ local plugins = {
   -- telescope code action
   {
     "aznhe21/actions-preview.nvim",
+    commit = "9f52a01",
     lazy = false,
     config = function()
       require "custom.configs.actions-preview"
@@ -104,6 +122,7 @@ local plugins = {
   -- neogit
   {
     "NeogitOrg/neogit",
+    commit = "060a625",
     cmd = { "Neogit" },
     dependencies = {
       "nvim-lua/plenary.nvim", -- required
@@ -118,6 +137,7 @@ local plugins = {
 
   {
     "LhKipp/nvim-nu",
+    commit = "161b005",
     event = "BufRead",
     config = function()
       require("nu").setup {}
@@ -127,6 +147,7 @@ local plugins = {
   -- trouble nvim
   {
     "folke/trouble.nvim",
+    commit = "50481f4",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     cmd = "Trouble",
     config = function()
@@ -137,6 +158,7 @@ local plugins = {
   -- dressing-nvim vim.select handling
   {
     "stevearc/dressing.nvim",
+    commit = "3a45525",
     event = "BufRead",
     config = function()
       require("dressing").setup()
@@ -146,6 +168,7 @@ local plugins = {
   -- auto save
   {
     "Pocco81/auto-save.nvim",
+    commit = "979b6c8",
     event = "BufEnter",
     config = function()
       require "custom.configs.auto-save"
@@ -154,6 +177,25 @@ local plugins = {
 
   {
     "hrsh7th/nvim-cmp",
+    dependencies = {
+      {
+        "hrsh7th/cmp-path",
+        commit = "91ff86c",
+      },
+      {
+        "hrsh7th/cmp-nvim-lua",
+        commit = "f12408b",
+      },
+      {
+        "hrsh7th/cmp-nvim-lsp",
+        commit = "99290b3",
+      },
+      {
+        "hrsh7th/cmp-buffer",
+        commit = "3022dbc",
+      },
+    },
+    commit = "8c82d0b",
     opts = function()
       local cmp_conf = require "plugins.configs.cmp"
       table.insert(cmp_conf.sources, { name = "codecompanion" })
@@ -165,6 +207,7 @@ local plugins = {
   -- nvim ai coding
   {
     "olimorris/codecompanion.nvim",
+    commit = "35b11dc",
     dependencies = {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
@@ -187,6 +230,7 @@ local plugins = {
     -- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- 对于 Windows
     event = "VeryLazy",
     version = false, -- 永远不要将此值设置为 "*"！永远不要！
+    commit = "7965546",
     config = function()
       require "custom.configs.avante"
     end,
@@ -223,6 +267,7 @@ local plugins = {
   -- mcp hub
   {
     "ravitemer/mcphub.nvim",
+    commit = "4888f27",
     dependencies = {
       "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
     },
@@ -251,6 +296,7 @@ local plugins = {
   -- render-markdown
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    commit = "be3e3ab",
     opts = {
       file_types = { "markdown", "codecompanion", "Avante" },
     },
@@ -260,29 +306,10 @@ local plugins = {
   -- mini-diff
   {
     "echasnovski/mini.nvim",
+    commit = "9e603a3",
     version = false,
     config = function()
       require("mini.diff").setup()
-    end,
-  },
-
-  -- session manager
-  {
-    "olimorris/persisted.nvim",
-    lazy = false, -- make sure the plugin is always loaded at startup
-    config = true,
-  },
-
-  -- tabby llm code
-  {
-    "TabbyML/vim-tabby",
-    lazy = false,
-    dependencies = {
-      "neovim/nvim-lspconfig",
-    },
-    init = function()
-      vim.g.tabby_agent_start_command = { "npx", "tabby-agent", "--stdio" }
-      vim.g.tabby_inline_completion_trigger = "auto"
     end,
   },
 }
