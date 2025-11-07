@@ -24,6 +24,10 @@ local plugins = {
 
   -- overrde plugin configs
   {
+    "nvim-telescope/telescope.nvim",
+    commit = "415af52",
+  },
+  {
     "nvim-treesitter/nvim-treesitter",
     commit = "f197a15",
     opts = overrides.treesitter,
