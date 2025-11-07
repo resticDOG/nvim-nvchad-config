@@ -312,6 +312,22 @@ local plugins = {
       require("mini.diff").setup()
     end,
   },
+
+  -- d2
+  {
+    "terrastruct/d2-vim",
+    commit = "cb3eb7f",
+    event = "BufRead",
+    -- ft = { "d2" },
+  },
+  {
+    "ravsii/tree-sitter-d2",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    commit = "ffb66ce",
+    build = "make nvim-install",
+    event = "VeryLazy",
+    version = "*",
+  },
 }
 
 return plugins
