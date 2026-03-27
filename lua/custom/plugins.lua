@@ -267,32 +267,29 @@ local plugins = {
       },
     },
   },
-
-  -- mcp hub
+  -- fcitx5 nvim
   {
-    "ravitemer/mcphub.nvim",
-    commit = "4888f27",
-    dependencies = {
-      "nvim-lua/plenary.nvim", -- Required for Job and HTTP requests
-    },
-    -- uncomment the following line to load hub lazily
-    -- cmd = { "MCPHub", "CodeCompanion" }, -- lazy load
-    lazy = false,
-    build = "npm install -g mcp-hub@latest", -- Installs required mcp-hub npm module
-    -- uncomment this if you don't want mcp-hub to be available globally or can't use -g
-    -- build = "bundled_build.lua",  -- Use this and set use_bundled_binary = true in opts  (see Advanced configuration)
+    "pysan3/fcitx5.nvim",
+    event = { "ModeChanged" },
     config = function()
-      require("mcphub").setup {
-        extensions = {
-          codecompanion = {
-            -- Show the mcp tool result in the chat buffer
-            auto_approve = true,
-            show_result_in_chat = true,
-            make_vars = true, -- make chat #variables from MCP server resources
-            make_slash_commands = true, -- make /slash_commands from MCP server prompts
-            auto_toggle_mcp_servers = true,
-          },
+      require("fcitx5").setup {
+        -- msg = nil, -- string | nil: printed when startup is completed
+        msg = "fcitx5 setup success", -- string | nil: printed when startup is completed
+        imname = { -- fcitx5.Imname | nil: imnames on each mode set as prior. See `:h map-table` for more in-depth information.
+          norm = nil, -- string | nil: imname to set in normal mode. if nil, will restore the mode on exit.
+          ins = nil,
+          cmd = nil,
+          vis = nil,
+          sel = nil,
+          opr = nil,
+          term = nil,
+          lang = nil,
         },
+        remember_prior = true, -- boolean: if true, it remembers the mode on exit and restore it when entering the mode again.
+        --                                 if false, uses what was set in config.
+        define_autocmd = true, -- boolean: if true, defines autocmd at `ModeChanged` to switch fcitx5 mode.
+        autostart_fcitx5 = true, -- boolean: if true, autostarts `fcitx5` when it is not running.
+        log = "warn", -- string: log level (default: warn)
       }
     end,
   },
@@ -315,22 +312,6 @@ local plugins = {
     config = function()
       require("mini.diff").setup()
     end,
-  },
-
-  -- d2
-  {
-    "terrastruct/d2-vim",
-    commit = "cb3eb7f",
-    event = "BufRead",
-    -- ft = { "d2" },
-  },
-  {
-    "ravsii/tree-sitter-d2",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    commit = "ffb66ce",
-    build = "make nvim-install",
-    event = "VeryLazy",
-    version = "*",
   },
 }
 
